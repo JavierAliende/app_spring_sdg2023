@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>La Historia de Paco el pinguino</h1> <br>
+<p>
+
+En un lejano y misterioso bosque había un Pinguino llamado Paco Augusto,  se adentró en la densa vegetación. Los árboles altos y frondosos los rodeaban, y el canto de las aves resonaba en el aire. La luz del sol se filtraba a través de las hojas, creando un mágico juego de sombras en el suelo.
+A medida que avanzaban, descubrieron ruinas antiguas cubiertas de enredaderas, vestigios de una civilización olvidada. Los muros de piedra hablaban de un pasado glorioso, pero también ocultaban secretos oscuros. El grupo decidió explorar más a fondo, con una mezcla de emoción y temor en sus corazones.
+De repente, una extraña criatura emergió de entre los árboles. Era una figura esbelta con ojos brillantes y una melena plateada que parecía fundirse con el entorno. Los aventureros se quedaron sin aliento, sin saber si era amistosa o peligrosa.
+La criatura les habló con una voz suave y melodiosa, revelándoles la historia del lugar y las pruebas que debían superar para desentrañar los secretos ancestrales. Los aventureros se sintieron atraídos por el misterio y aceptaron el desafío.
+
+</p>
+<!-- Aquí va el contenido del comentario -->
+<body>
+  <h1>Calificar y comentar</h1>
+  <label for="firstName">Nombre:</label>
+  <input type="text" id="firstName" placeholder="Ingresa tu nombre">
+  <label for="lastName">Apellido:</label>
+  <input type="text" id="lastName" placeholder="Ingresa tu apellido">
+
+  <div class="rating" onclick="setRating(event)">
+    <span class="star" data-rating="1">&#9733;</span>
+    <span class="star" data-rating="2">&#9733;</span>
+    <span class="star" data-rating="3">&#9733;</span>
+    <span class="star" data-rating="4">&#9733;</span>
+    <span class="star" data-rating="5">&#9733;</span>
+  </div>
+  <textarea id="commentText" placeholder="Escribe tu comentario aquí"></textarea>
+  <button onclick="submitComment()">Comentar</button>
+
+  <div id="commentSection">
+
+  </div>
+  
+  <style>
+  .star {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.star:hover {
+  color: gold;
+}
+.selected {
+  color: gold;
+}
+</style>
+<script>
+const stars = document.querySelectorAll('.star');
+const commentSection = document.getElementById('commentSection');
+
+function setRating(event) {
+  const selectedStar = event.target;
+  const rating = selectedStar.dataset.rating;
+
+  // Resalta las estrellas seleccionadas
+  stars.forEach(star => {
+    star.classList.remove('selected');
+  });
+  selectedStar.classList.add('selected');
+
+  // Almacena la calificación en algún lugar o haz algo con ella
+  console.log('Calificación:', rating);
+}
+
+function submitComment() {
+  const firstName = document.getElementById('firstName').value;
+  const lastName = document.getElementById('lastName').value;
+  const commentText = document.getElementById('commentText').value;
+  const currentDateTime = new Date();
+  const commentDateTime = currentDateTime.toLocaleString();
+
+  // Obtiene la calificación seleccionada
+  const selectedRating = document.querySelector('.star.selected');
+  const rating = selectedRating ? selectedRating.dataset.rating : 'Sin calificación';
+
+  // Crea un elemento para mostrar el comentario, la calificación y el nombre
+  const commentElement = document.createElement('div');
+  commentElement.innerHTML = `<b>${firstName} ${lastName}</b> - Calificación: ${rating} - Comentario: ${commentText} - Fecha/Hora: ${commentDateTime}`;
+
+  // Agrega el elemento al contenedor de comentarios
+  commentSection.appendChild(commentElement);
+
+  // Limpia el área de comentarios y los campos de nombre y apellido después de enviar
+  document.getElementById('commentText').value = '';
+  document.getElementById('firstName').value = '';
+  document.getElementById('lastName').value = '';
+
+  // Desmarca las estrellas seleccionadas
+  stars.forEach(star => {
+    star.classList.remove('selected');
+  });
+}
+
+
+  </script>
+
+</body>
+
+</html>
